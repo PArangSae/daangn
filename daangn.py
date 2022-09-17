@@ -58,7 +58,7 @@ class Daangn():
                 "id": id
             })
         return self.products
-    '''
+    
     def fetch_article(self, id):
         self.article = {}
         webpage = requests.get(f"https://daangn.com/articles/{id}")
@@ -77,6 +77,7 @@ class Daangn():
         price = int(
             float(soup.find_all('p', {'id': 'article-price'})[0]['content']))
         self.article = {'user': user, 'name': name, 'price': price}
+        return self.article
 
     def fetch_user(self, id):
         self.user = {}
@@ -86,10 +87,10 @@ class Daangn():
             "div", {'id': 'profile-image'})[0].findChildren('img')[0]['alt']
         print(nickname)
         articles = []
-        card_link = soup.find_all('a', 'card-link ')
+        card_link = soup.find_all('a', 'card-link')
         for x in card_link:
             articles.append(x['data-event-label'])
         self.user = {'articles': articles, 'nickname': nickname}
         return self.user
-    '''
+        
     # fetch things currently not working
